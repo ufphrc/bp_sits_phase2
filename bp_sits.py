@@ -14,7 +14,10 @@ if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
     else:
         df = pd.read_excel(uploaded_file)
-    
+        
+    # Filter the dataframe to include only rows where 'rec_id' contains '-B'
+    df = df[df['rec_id'].str.contains('-B', na=False)]
+
     # Check for duplicate rec_id values in df_bp
     duplicate_rec_ids_bp = df[df['rec_id'].duplicated()]['rec_id']
     duplicate_rec_ids_bp_count = duplicate_rec_ids_bp.count()
