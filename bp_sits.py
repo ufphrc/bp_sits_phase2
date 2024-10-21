@@ -16,7 +16,8 @@ if uploaded_file is not None:
         df = pd.read_excel(uploaded_file)
         
     # Filter the dataframe to include only rows where 'rec_id' contains '-B'
-    df = df[df['rec_id'].str.contains('-B', na=False)]
+    #df = df[df['rec_id'].str.contains('-B', na=False)]
+    df = df[df['rec_id'].str.endswith('-B')]
 
     # Check for duplicate rec_id values in df_bp
     duplicate_rec_ids_bp = df[df['rec_id'].duplicated()]['rec_id']
